@@ -1,4 +1,4 @@
-# epd3in7-wx-date-display
+# WiHKger-edp3in7 
 
 A fork of https://github.com/JamesXtest/WiHKger-edp2in9_V2 for 3.7" waveshare e papaer
 
