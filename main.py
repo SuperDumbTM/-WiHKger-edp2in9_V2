@@ -20,17 +20,19 @@ ROTATE_FLAG = False
 # translation
 month = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"]
 # settinh
-today = (date.today().strftime("%d"),date.today().strftime("%m"),date.today().strftime("%Y"),
-    date.today().strftime("%A"),date.today().strftime("%b"))
-str_date = today[0] + "," + today[4].upper() + " | " + today[3].upper()
+today_day = date.today().strftime("%d")
+today_month_abbr = date.today().strftime("%b")
+today_weekday = date.today().strftime("%A")
 L_icon_size = 80, 80
-S_icon_size = 60, 60
+M_icon_size = 60, 60
+S_icon_size = 27, 27
+
 # set font
-font48 = ImageFont.truetype("./font/msjh.ttc", 48)
+font56 = ImageFont.truetype("./font/msjh.ttc", 56)
 font28 = ImageFont.truetype("./font/msjh.ttc", 28)
 font24 = ImageFont.truetype("./font/msjh.ttc", 24)
-font18 = ImageFont.truetype("./font/msjh.ttc", 18)
-date30 = ImageFont.truetype("./font/unispace bd.ttf", 30)
+font20 = ImageFont.truetype("./font/msjh.ttc", 20)
+date32 = ImageFont.truetype("./font/unispace bd.ttf", 32)
 
 def main(argv):
     global DIST, RAINFALL_DIST, VERBOSE_FLAG, ROTATE_FLAG
@@ -63,36 +65,54 @@ def main(argv):
         draw = ImageDraw.Draw(frame)
 
         draw.line((0, 80, epd.height, 80), fill=epd.GRAY4, width=5) # date
-        draw.line((335, 0, 335, 80), fill=epd.GRAY4, width=5) # date, vertical
+        draw.line((140, 20, 140, 55), fill=epd.GRAY4, width=3) # date, weekday vertical
+        draw.line((335, 0, 335, 80), fill=epd.GRAY4, width=5) # date, main vertical
         draw.rounded_rectangle((10,100,240,270), outline=0, fill=epd.GRAY1, width=2, radius=15) # current wx
         draw.rounded_rectangle((245,100,475,270), outline=0, fill=epd.GRAY1, width=2, radius=15)# forecast
         draw.line((360, 100, 360, 270), fill=epd.GRAY4, width=2) # forecast, vertical
         # date
-        draw.text((10,20), str_date, font = date30, fill=epd.GRAY4)
+        draw.text((5,20), today_day+" "+today_month_abbr.upper(), font = date32, fill=epd.GRAY4)
+        draw.text((155,20), today_weekday.upper(), font = date32, fill=epd.GRAY4)
         # current weather
         rhrread_logo = Image.open(os.path.join(picdir, str(crrt_wx["icon"])+".bmp"))
         rhrread_logo = rhrread_logo.resize(L_icon_size)
-
         draw.text((20,105),crrt_wx["district"], font=font24, fill=epd.GRAY4)
-        draw.text((30,130),str(crrt_wx["temperature"])+'°', font=font48, fill=epd.GRAY4)
-        draw.text((20,190),"濕度: " + str(crrt_wx["humanity"]) + "%", font=font24, fill=epd.GRAY4)
-        draw.text((20,220),"雨量: " + str(crrt_wx["rainfall"]) + "mm", font=font24, fill=epd.GRAY4)
+        draw.text((30,130),str(crrt_wx["temperature"])+'°', font=font56, fill=epd.GRAY4)
+        draw.text((20,200),"濕度: " + str(crrt_wx["humanity"]) + "%", font=font24, fill=epd.GRAY4)
+        draw.text((20,230),"雨量: " + str(crrt_wx["rainfall"]) + "mm", font=font24, fill=epd.GRAY4)
         frame.paste(rhrread_logo,(145,145))
         # forecast
-        draw.text((270,105),"明天預報", font=font18, fill=epd.GRAY4)
+        draw.text((265,105),"明天預報", font=font20, fill=epd.GRAY4)
+            # weather icon
         fnd_logo = Image.open(os.path.join(picdir, str(forecast_wx[0]["icon"])) + ".bmp")
+        fnd_logo = fnd_logo.resize(M_icon_size)
+        frame.paste(fnd_logo,(275,135))
+            # temp icon
+        fnd_logo = Image.open(os.path.join(picdir, "thermometer.bmp"))
         fnd_logo = fnd_logo.resize(S_icon_size)
-        frame.paste(fnd_logo,(275,130))
-        draw.text((250,200),"温度: "+str(forecast_wx[0]["temperatureMin"])+"-"+str(forecast_wx[0]["temperatureMax"])+"°", font=font18, fill=epd.GRAY4)
-        draw.text((250,220),"濕度: "+str(forecast_wx[0]["humanityMin"])+"-"+str(forecast_wx[0]["humanityMax"])+"%", font=font18, fill=epd.GRAY4)
+        frame.paste(fnd_logo,(250,200))
+        draw.text((280,200),str(forecast_wx[0]["temperatureMin"])+"-"+str(forecast_wx[0]["temperatureMax"])+"°", font=font20, fill=epd.GRAY4)
+            # huma icon
+        fnd_logo = Image.open(os.path.join(picdir, "rain-drop.bmp"))
+        fnd_logo = fnd_logo.resize(S_icon_size)
+        frame.paste(fnd_logo,(250,235))
+        draw.text((280,235),str(forecast_wx[0]["humanityMin"])+"-"+str(forecast_wx[0]["humanityMax"])+"%", font=font20, fill=epd.GRAY4)
 
-        draw.text((380,105),"後天預報", font=font18, fill=epd.GRAY4)
+        draw.text((375,105),"後天預報", font=font20, fill=epd.GRAY4)
+            # weather icon
         fnd_logo = Image.open(os.path.join(picdir, str(forecast_wx[1]["icon"])) + ".bmp")
+        fnd_logo = fnd_logo.resize(M_icon_size)
+        frame.paste(fnd_logo,(390,135))
+            # temp icon
+        fnd_logo = Image.open(os.path.join(picdir, "thermometer.bmp"))
         fnd_logo = fnd_logo.resize(S_icon_size)
-        frame.paste(fnd_logo,(385,130))
-        draw.text((365,200),"温度: "+str(forecast_wx[1]["temperatureMin"])+"-"+str(forecast_wx[0]["temperatureMax"])+"°", font=font18, fill=epd.GRAY4)
-        draw.text((365,220),"濕度: "+str(forecast_wx[1]["humanityMin"])+"-"+str(forecast_wx[0]["humanityMax"])+"%", font=font18, fill=epd.GRAY4)
-        
+        frame.paste(fnd_logo,(365,200))
+        draw.text((395,200),str(forecast_wx[1]["temperatureMin"])+"-"+str(forecast_wx[1]["temperatureMax"])+"°", font=font20, fill=epd.GRAY4)
+            # huma icon
+        fnd_logo = Image.open(os.path.join(picdir, "rain-drop.bmp"))
+        fnd_logo = fnd_logo.resize(S_icon_size)
+        frame.paste(fnd_logo,(365,235))
+        draw.text((395,235),str(forecast_wx[1]["humanityMin"])+"-"+str(forecast_wx[1]["humanityMax"])+"%", font=font20, fill=epd.GRAY4)
         # output
         if (ROTATE_FLAG): frame = frame.rotate(180)
         epd.display_4Gray(epd.getbuffer_4Gray(frame))     
