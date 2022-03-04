@@ -13,7 +13,7 @@ libdir = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'lib')
 tmpdir = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'temp')
 if (os.path.exists(libdir)):
     sys.path.append(libdir)
-if not (os.path.exisit(tmpdir)):
+if not (os.path.exist(tmpdir)):
     os.mkdirs(tmpdir)
     
 # user input
