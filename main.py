@@ -40,7 +40,7 @@ font20 = ImageFont.truetype("./font/msjh.ttc", 20)
 date32 = ImageFont.truetype("./font/unispace bd.ttf", 32)
 
 def main(argv):
-    global DIST, RAINFALL_DIST, VERBOSE_FLAG, ROTATE_FLAG
+    global DIST, RAINFALL_DIST, VERBOSE_FLAG, ROTATE_FLAG, IMAGEOUT_FLAG
 
     opts, args = getopt.getopt(argv[1:],'d:r:vhiR',["district=","rainfall-district=","verbose","image-save","help","rotate-display"])
     for opt,arg in opts:
