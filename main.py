@@ -14,7 +14,7 @@ tmpdir = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'temp')
 if (os.path.exists(libdir)):
     sys.path.append(libdir)
 if not (os.path.exists(tmpdir)):
-    os.mkdirs(tmpdir)
+    os.makedirs(tmpdir)
     
 # user input
 DIST = ""
