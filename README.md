@@ -11,7 +11,7 @@ A fork of https://github.com/JamesXtest/WiHKger-edp2in9_V2 （適用於 Waveshar
 - 新增顯示當天日期
 - 支援從command line修改天氣資料地區，詳見 Usage
 - 分離 HKO API return parsing 至獨立 module
-- [！] 左上空位重未諗到放咩好
+- [！] 右上空位重未諗到放咩好
 
 # Usage
 ### Dependency & Library required

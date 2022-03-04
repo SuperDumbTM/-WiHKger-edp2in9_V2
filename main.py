@@ -24,7 +24,7 @@ ROTATE_FLAG = False
 IMAGEOUT_FLAG = False
 # translation
 month = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"]
-# settinh
+# setting
 today_day = date.today().strftime("%d")
 today_month_abbr = date.today().strftime("%b")
 today_weekday = date.today().strftime("%A")
@@ -56,8 +56,12 @@ def main(argv):
             IMAGEOUT_FLAG = True
         elif opt in ['-h', '--help']:
             pass #TODO
-    if(DIST=="" and VERBOSE_FLAG): print("[WARN] district is not set, fallback to '香港天文台'")
-    if(RAINFALL_DIST=="" and VERBOSE_FLAG): print("[WARN] rainfall district is not set, fallback to '觀塘'")
+    if(DIST==""): 
+        DIST="香港天文台"
+        if (VERBOSE_FLAG): print("[WARN] district is not set, fallback to '香港天文台'")
+    if(RAINFALL_DIST==""):
+        RAINFALL_DIST="油尖旺"
+        if (VERBOSE_FLAG): print("[WARN] rainfall district is not set, fallback to '油尖旺'")
     
     epd = epd3in7.EPD()
     wx = weather_info.WeatherInfo(dist=DIST,rainfall_dist=RAINFALL_DIST)
