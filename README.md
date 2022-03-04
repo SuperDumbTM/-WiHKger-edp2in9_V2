@@ -2,6 +2,8 @@
 
 A fork of https://github.com/JamesXtest/WiHKger-edp2in9_V2 （適用於 Waveshare 3.7" e papaer）
 
+透過 e-paper 屏幕顯示即時天氣資訊、未來天氣預測
+
 ![output](https://user-images.githubusercontent.com/71750702/156729070-ffcb76b7-8e9e-4fca-8dd1-915b5f5f45ae.jpg)
 
 ### 修改項目
