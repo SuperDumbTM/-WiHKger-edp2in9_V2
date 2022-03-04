@@ -21,6 +21,7 @@ DIST = ""
 RAINFALL_DIST = ""
 VERBOSE_FLAG = False
 ROTATE_FLAG = False
+IMAGEOUT_FLAG = False
 # translation
 month = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"]
 # settinh
@@ -41,7 +42,7 @@ date32 = ImageFont.truetype("./font/unispace bd.ttf", 32)
 def main(argv):
     global DIST, RAINFALL_DIST, VERBOSE_FLAG, ROTATE_FLAG
 
-    opts, args = getopt.getopt(argv[1:],'d:r:vhR',["district=","rainfall-district=","verbose","help","rotate-display"])
+    opts, args = getopt.getopt(argv[1:],'d:r:vhiR',["district=","rainfall-district=","verbose","image-save","help","rotate-display"])
     for opt,arg in opts:
         if opt in ['-d', '--district']:
             DIST = arg
@@ -51,6 +52,8 @@ def main(argv):
             VERBOSE_FLAG = True
         elif opt in ['-R', '--rotate-display']:
             ROTATE_FLAG = True
+        elif opt in ['i', '--image-save']:
+            IMAGEOUT_FLAG = True
         elif opt in ['-h', '--help']:
             pass #TODO
     if(DIST=="" and VERBOSE_FLAG): print("[WARN] district is missing, fallback to '香港天文台'")
@@ -118,7 +121,7 @@ def main(argv):
         frame.paste(fnd_logo,(365,235))
         draw.text((395,235),str(forecast_wx[1]["humanityMin"])+"-"+str(forecast_wx[1]["humanityMax"])+"%", font=font20, fill=epd.GRAY4)
         # output
-        frame.save(os.path.join(tmpdir,"output.bmp"))
+        if (IMAGEOUT_FLAG): frame.save(os.path.join(tmpdir,"output.bmp"))
         if (ROTATE_FLAG): frame = frame.rotate(180)
         epd.display_4Gray(epd.getbuffer_4Gray(frame))     
 
