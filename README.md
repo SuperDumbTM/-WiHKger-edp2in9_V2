@@ -43,9 +43,14 @@ sudo pip3 install spidev
 sudo pip3 install Pillow
 ```
 ### 執行/使用
-測試 e-paper: ```python3 epd_3in7_test.py```<br>
+#### 下載
+```wget -c https://github.com/SuperDumbTM/WiHKger-edp3in7/archive/refs/tags/latest.tar.gz -O - | sudo tar -xz```<br>
+或<br>
+```wget -c https://github.com/SuperDumbTM/WiHKger-edp3in7/archive/refs/tags/<specific version>.tar.gz -O - | sudo tar -xz```<br>
 
-主程式: ```python3 main.py [-flags]```<br>
+#### 執行
+測試 e-paper : ```python3 epd_3in7_test.py```<br>
+主程式 : ```python3 main.py [-flags]```<br>
 
 #### 排程執行
 - crontab
