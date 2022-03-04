@@ -10,6 +10,7 @@ import traceback, logging
 # path
 picdir = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'pic')
 libdir = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'lib')
+tmpdir = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'temp')
 if os.path.exists(libdir):
     sys.path.append(libdir)
 # user input
@@ -114,7 +115,7 @@ def main(argv):
         frame.paste(fnd_logo,(365,235))
         draw.text((395,235),str(forecast_wx[1]["humanityMin"])+"-"+str(forecast_wx[1]["humanityMax"])+"%", font=font20, fill=epd.GRAY4)
         # output
-        frame.save(os.path.join(picdir,"output.bmp"))
+        frame.save(os.path.join(tmpdir,"output.bmp"))
         if (ROTATE_FLAG): frame = frame.rotate(180)
         epd.display_4Gray(epd.getbuffer_4Gray(frame))     
 
