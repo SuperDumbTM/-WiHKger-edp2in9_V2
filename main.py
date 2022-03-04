@@ -56,8 +56,8 @@ def main(argv):
             IMAGEOUT_FLAG = True
         elif opt in ['-h', '--help']:
             pass #TODO
-    if(DIST=="" and VERBOSE_FLAG): print("[WARN] district is missing, fallback to '香港天文台'")
-    if(RAINFALL_DIST=="" and VERBOSE_FLAG): print("[WARN] rainfall district is missing, fallback to '觀塘'")
+    if(DIST=="" and VERBOSE_FLAG): print("[WARN] district is not set, fallback to '香港天文台'")
+    if(RAINFALL_DIST=="" and VERBOSE_FLAG): print("[WARN] rainfall district is not set, fallback to '觀塘'")
     
     epd = epd3in7.EPD()
     wx = weather_info.WeatherInfo(dist=DIST,rainfall_dist=RAINFALL_DIST)

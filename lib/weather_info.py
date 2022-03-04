@@ -14,7 +14,6 @@ class WeatherInfo:
             if rhrread_data["temperature"]["data"][n_0]["place"] ==self.dist:
                 break
         if n_0 >= len(rhrread_data["temperature"]["data"])-1:
-            if verbose: print("[ERROR] district not!")
             n_0 = 1
 
         for n_1 in range(len(rhrread_data["rainfall"]["data"])):
