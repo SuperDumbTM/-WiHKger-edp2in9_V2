@@ -1,6 +1,6 @@
 #!/bin/bash
-dist="流浮山"
-rain="元朗"
+dist="香港天文台"
+rain="油尖旺"
 
 cd /home/pi/epaper/WiHKger-edp3in7/
 python3 main.py -d $dist -r $rain -R
