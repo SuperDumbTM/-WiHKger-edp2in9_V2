@@ -36,9 +36,18 @@ sudo pip3 install Pillow
 
 主程式: ```python3 main.py [-flags]```<br>
 
+#### 排程執行
+- crontab
+1. 修改 ```epd3in7_refresh``` 內嘅 ```dist="<天氣資料地區>", rain="<雨量資料地區>"```
+3. 修改程式檔案位置至 ```cd <path to program directory>```
+4. 按需要增減flag至 ```python3 main.py -d $dist -r $rain <flags>```
+5. 新增crontab：在terminal執行 ```crontab -e```
+> <b>Example</b><br>
+> 每半小時更新一次 ```*/30 * * * *  <path to epd3in7_refresh directory>/epd3in7_refresh```<br>
+> 每一小時更新一次 ```0 */1 * * *  <path to epd3in7_refresh directory>/epd3in7_refresh```
 
 #### Flags
-  1. 設定天氣地區（預設：香港天文台）<br>
+  1. 設定天氣資料地區（預設：香港天文台）<br>
       ```-d/--district <地區>```
   3. 設定雨量資料地區（預設：觀塘）<br>
       ```-r/--rainfall-district <地區>```
