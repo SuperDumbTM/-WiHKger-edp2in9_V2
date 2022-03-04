@@ -18,11 +18,23 @@ A fork of https://github.com/JamesXtest/WiHKger-edp2in9_V2 （適用於 Waveshar
 - Python (≥3.7)
 - Pillow (pip)
 
-(Required by Waveshare e-paper for RPi - [3.7inch e-Paper HAT - Waveshare Wiki](https://www.waveshare.com/wiki/3.7inch_e-Paper_HAT))<br>
-- python3-pil
-- python3-numpy
-- RPi.GPIO (pip)
-- spidev (pip)
+(Required by Waveshare e-paper for RPi)<br>
+- BCM2835 libraries,  wiringPi libraries, Python libraries 請參考 [3.7inch e-Paper HAT - Waveshare Wiki](https://www.waveshare.com/wiki/3.7inch_e-Paper_HAT)
+```
+wget http://www.airspayce.com/mikem/bcm2835/bcm2835-1.60.tar.gz
+tar zxvf bcm2835-1.60.tar.gz 
+cd bcm2835-1.60/
+sudo ./configure
+sudo make
+sudo make check
+sudo make install
+```
+```
+sudo apt-get install wiringpi
+wget https://project-downloads.drogon.net/wiringpi-latest.deb
+sudo dpkg -i wiringpi-latest.deb
+gpio -v
+```
 ```
 sudo apt-get update
 sudo apt-get install python3-pip
