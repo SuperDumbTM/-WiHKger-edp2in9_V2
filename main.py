@@ -114,6 +114,7 @@ def main(argv):
         frame.paste(fnd_logo,(365,235))
         draw.text((395,235),str(forecast_wx[1]["humanityMin"])+"-"+str(forecast_wx[1]["humanityMax"])+"%", font=font20, fill=epd.GRAY4)
         # output
+        frame.save(os.path.join(picdir,"output.bmp"))
         if (ROTATE_FLAG): frame = frame.rotate(180)
         epd.display_4Gray(epd.getbuffer_4Gray(frame))     
 
