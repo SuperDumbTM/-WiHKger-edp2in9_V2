@@ -11,8 +11,11 @@ import traceback, logging
 picdir = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'pic')
 libdir = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'lib')
 tmpdir = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'temp')
-if os.path.exists(libdir):
+if (os.path.exists(libdir)):
     sys.path.append(libdir)
+if not (os.path.exisit(tmpdir)):
+    os.mkdirs(tmpdir)
+    
 # user input
 DIST = ""
 RAINFALL_DIST = ""
