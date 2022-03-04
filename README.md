@@ -12,7 +12,11 @@ A fork of https://github.com/JamesXtest/WiHKger-edp2in9_V2 （適用於 Waveshar
 - [！] 右上空位重未諗到放咩好
 
 # Usage
-### Dependency & Library required
+### Hardware requirement
+- 可以連接網絡及有GPIO插頭 raspberry pi
+  - Arduino理論上都可以，但未測試過。另外亦須使用其他library，或須自行修改source code
+- Waveshare 3.7" e papaer
+### Dependency & Library requirement
 - Python (≥3.7)
 - Pillow (pip)
 
