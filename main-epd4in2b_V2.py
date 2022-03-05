@@ -198,8 +198,8 @@ def main(argv):
         # output
         if (IMAGEOUT_FLAG): 
             if (VERBOSE_FLAG): print("[INFO] Saving the e-paper display output to temp/...")
-            img_Black.save(os.path.join(tmpdir,"black.png"))
-            img_RedYellow.save(os.path.join(tmpdir,"red.png"))
+            img_Black.save(os.path.join(tmpdir,"black.bmp"))
+            img_RedYellow.save(os.path.join(tmpdir,"red.bmp"))
         if (ROTATE_FLAG):
             if (VERBOSE_FLAG): print("[INFO] Rotating the e-paper display output by {0}",ROTATE_DEGREE)
             img_Black = img_Black.rotate(ROTATE_DEGREE)
