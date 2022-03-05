@@ -22,6 +22,8 @@ A fork of https://github.com/JamesXtest/WiHKger-edp2in9_V2 （適用於 Waveshar
 
 (Required by Waveshare e-paper for RPi)<br>
 - BCM2835 libraries,  wiringPi libraries, Python libraries 請參考 [3.7inch e-Paper HAT - Waveshare Wiki](https://www.waveshare.com/wiki/3.7inch_e-Paper_HAT)
+
+注：WiringPi 官方已停止更新，須使用第三方開發嘅 [WiringPi fork](https://github.com/WiringPi/WiringPi)
 ```
 wget http://www.airspayce.com/mikem/bcm2835/bcm2835-1.60.tar.gz
 tar zxvf bcm2835-1.60.tar.gz 
