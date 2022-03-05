@@ -32,8 +32,7 @@ class WeatherInfo:
             "icon":rhrread_data["icon"][0],
             "update_time":rhrread_data["temperature"]["recordTime"]
             }
-        if (verbose):
-            self.verbose(data,"rhr")
+        if (verbose): self.verbose(data,"rhr")
         return data
 
     def fnd_process(self,verbose,days=2): # 九天天氣預報   
@@ -55,19 +54,39 @@ class WeatherInfo:
                     "psr":fnd_data["weatherForecast"][i]["PSR"],
                     "icon":fnd_data["weatherForecast"][i]["ForecastIcon"]}
             )
-        msg["generalSituation"]=fnd_data["generalSituation"]
-        msg["updateTime"]=fnd_data["updateTime"]
+        data.append(
+            {"generalSituation":fnd_data["generalSituation"],
+            "updateTime":fnd_data["updateTime"]
+            }
+        )
         
-        if (verbose):
-            self.verbose(data,"fnd",days=days,msg=msg)
+        if (verbose): self.verbose(data,"fnd",days=days)
         
         return data
     
-    def verbose(self,data,type,days=2,msg={}):
+    def flw_process(self,verbose):
+        flw_url = 'https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=flw&lang=tc'
+        flw_data = json.loads(requests.get(flw_url).text)
 
-        translation ={}
+        data = {
+            "generalSituation":flw_data["generalSituation"],
+            "tcInfo":flw_data["tcInfo"],
+            "fireDangerWarning":flw_data["fireDangerWarning"],
+            "forecastPeriod":flw_data["forecastPeriod"],
+            "forecastDesc":flw_data["forecastDesc"],
+            "outlook":flw_data["outlook"],
+            "updateTime":flw_data["updateTime"]
+        }
 
-        if (type == "rhr"):
+        if (verbose): self.verbose(data,"flw")
+
+        return data
+    
+    def verbose(self,data,type,days=2):
+
+        # translation ={}
+
+        if (type in ['rhr','flw']):
             for key in data:
                 print("{:<16s}: {:<10s}".format(key, str(data[key])))
         elif (type == "fnd"):
@@ -75,5 +94,6 @@ class WeatherInfo:
                 for key in data[i].keys():
                     print("{:<16s}: {:<10s}".format(key, str(data[i][key])))
                 print()
-            print(msg["generalSituation"])
+
         print("-"*10)
+        

@@ -1,6 +1,18 @@
 #!/bin/bash
-dist="香港天文台"
-rain="油尖旺"
+dist="" # weather information district
+rain="" # rainfall information district
+forecast_text="" # generalSituation, forecastDesc, outlook
 
-cd /home/pi/epaper/WiHKger-edp3in7/
-python3 main.py -d $dist -r $rain -R
+cd # <path to program directory>
+python3 main-epd3in7.py # <flags>
+
+# --- Example ---
+# dist="香港天文台"
+# rain="油尖旺"
+# forecast_text="generalSituation"
+
+# cd /home/pi/WiHKger-edp3in7-epd4in2b/
+# python3 main-epd3in7.py -d $dist -r $rain -f $forecast_text
+
+# you may need to execute the following command the make this file executable:
+# sudo chomd <path to this file>/epd3in7_refresh +x
