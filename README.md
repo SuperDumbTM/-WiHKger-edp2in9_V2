@@ -4,7 +4,8 @@
 - A fork of https://github.com/JamesXtest/WiHKger-edp2in9_V2 
 
 #### 3.7" e papaer display 預覽
-![output](https://user-images.githubusercontent.com/71750702/156729070-ffcb76b7-8e9e-4fca-8dd1-915b5f5f45ae.jpg)
+![3 7~1](https://user-images.githubusercontent.com/71750702/156932078-07a5029e-e6c5-4092-9881-ccb9d61d0a21.jpg)
+
 
 #### 4.2" e papaer display 預覽
 ![4 2general](https://user-images.githubusercontent.com/71750702/156931529-7111159c-0afa-4161-80fd-c713f3215caa.jpg)
