@@ -7,7 +7,7 @@
 ![output](https://user-images.githubusercontent.com/71750702/156729070-ffcb76b7-8e9e-4fca-8dd1-915b5f5f45ae.jpg)
 
 #### 4.2" e papaer display 預覽
-![4 2_smallfont](https://user-images.githubusercontent.com/71750702/156895174-390f7a41-e904-475d-bc46-e365cf0b77dc.jpg)
+![4 2general](https://user-images.githubusercontent.com/71750702/156931529-7111159c-0afa-4161-80fd-c713f3215caa.jpg)
 ![4 2_largefont](https://user-images.githubusercontent.com/71750702/156895175-1e7a0307-7b3e-42ed-8f95-c5568b9951e5.jpg)
 ![4 2_midfont](https://user-images.githubusercontent.com/71750702/156895176-25c64674-4c4b-4cc9-b4f6-1520aaf844e9.jpg)
 ![4 2_RedtTemp](https://user-images.githubusercontent.com/71750702/156895177-62bd50ec-2697-47fd-b37c-f3c510fadbb2.jpg)
