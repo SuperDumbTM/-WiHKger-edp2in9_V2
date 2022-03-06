@@ -7,17 +7,20 @@
 ![output](https://user-images.githubusercontent.com/71750702/156729070-ffcb76b7-8e9e-4fca-8dd1-915b5f5f45ae.jpg)
 
 #### 4.2" e papaer display 預覽
-![4 2_largefont](https://user-images.githubusercontent.com/71750702/156893165-f51af7d0-cd81-4ee8-b78b-67711ab1c5ce.jpg)
-![4 2_midfont](https://user-images.githubusercontent.com/71750702/156893166-83ac87b7-dbca-45ad-a798-35cb30cd4578.jpg)
-![4 2_smallfont](https://user-images.githubusercontent.com/71750702/156893167-d9533ca3-b9b5-432a-9b5f-eb6d9e0c779c.jpg)
-![4 2_tempcolor](https://user-images.githubusercontent.com/71750702/156893168-fed5748d-bdc9-4730-acc8-3ba083b0e50e.jpg)
+![4 2_smallfont](https://user-images.githubusercontent.com/71750702/156895174-390f7a41-e904-475d-bc46-e365cf0b77dc.jpg)
+![4 2_largefont](https://user-images.githubusercontent.com/71750702/156895175-1e7a0307-7b3e-42ed-8f95-c5568b9951e5.jpg)
+![4 2_midfont](https://user-images.githubusercontent.com/71750702/156895176-25c64674-4c4b-4cc9-b4f6-1520aaf844e9.jpg)
+![4 2_RedtTemp](https://user-images.githubusercontent.com/71750702/156895177-62bd50ec-2697-47fd-b37c-f3c510fadbb2.jpg)
+
+
 
 ### 修改項目
 - 天氣預測由顯示未來一天新增至兩天
 - 新增顯示當天日期
+- 顯示公眾假期
 - 支援從command line修改天氣資料地區，詳見 Usage
 - 分離 HKO API return parsing 至獨立 module
-- [！] 右上空位重未諗到放咩好
+- 顯示天氣警告訊號
 
 ### 4.2" 三色 display 版本獨有功能
 - 週未（六, 日）時，星期顯示為紅色（或黃色）
@@ -108,3 +111,7 @@ python3 -m pip install pillow --upgrade
   7. 設定天氣預報文字類型 (只適用於 4.2")<br>
       generalSituation（天氣概況，預設）,forecastDesc（天氣預測內容）,outlook（天氣展望）<br>
       ```-f/--forecast-text-type```
+  8. 關閉於terminal顯示天氣資料，當-v/--verbose同時設定先有效<br>
+      ```--mute-weather-info```
+  9. 顯示程式flags教學<br>
+      ```-h/--help```
