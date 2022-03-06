@@ -1,0 +1,43 @@
+*********************************************************
+*		WiHKger-edp3in7-epd4in2b		*
+*https://github.com/SuperDumbTM/WiHKger-edp3in7-epd4in2b*
+*							*
+*		Author: SuperFatTM			*
+*							*
+*********************************************************
+
+[OPTION]
+
+ -d [district], --district [district]
+	retrieve current weather data for [district]
+
+
+ -r,--rainfall-district	
+	retrieve current rainfall data for [district]
+
+ -v, --verbose
+	display execution information, useful for debug
+
+ -R [degree], --rotate-display [degree]
+	rotate the screen output by [degree] degree.  set 180 to flip the screen ouput
+	default: 0
+					
+ -i, --image-save
+	save the screen output to "temp/*.bmp"
+
+ -f [type], --forecast-text-type [type]
+	set forecaset text type to [type]
+	options: "generalSituation","forecastDesc","outlook"
+	default: generalSituation
+			
+ --mute-weather-info
+	disable displaying weather infomation returns when verbose flag is set
+	no effect if verbose flag is not set
+							
+ --dry-run
+	run the program without refreshing the e-paper display
+	this flag will automatically set verbose and image-save flag to True
+	equivalent to "--dry-run -v -i"
+
+ -h, --help
+	display this help and exit

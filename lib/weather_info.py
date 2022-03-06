@@ -38,12 +38,11 @@ class WeatherInfo:
     def fnd_process(self,verbose,days=2): # 九天天氣預報   
         fnd_url = 'https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=fnd&lang=tc'
         fnd_data = json.loads(requests.get(fnd_url).text)
-        data=[]
-        msg={}
+        data={}
         
         for i in range (days):
-            data.append(
-                    {"forecastDate":fnd_data["weatherForecast"][i]["forecastDate"],
+            data[str(i)]={
+                    "forecastDate":fnd_data["weatherForecast"][i]["forecastDate"],
                     "week":fnd_data["weatherForecast"][i]["week"],
                     "temperatureMin":fnd_data["weatherForecast"][i]["forecastMintemp"]["value"],
                     "temperatureMax":fnd_data["weatherForecast"][i]["forecastMaxtemp"]["value"],
@@ -52,13 +51,12 @@ class WeatherInfo:
                     "wind":fnd_data["weatherForecast"][i]["forecastWind"],
                     "forecast":fnd_data["weatherForecast"][i]["forecastWeather"],
                     "psr":fnd_data["weatherForecast"][i]["PSR"],
-                    "icon":fnd_data["weatherForecast"][i]["ForecastIcon"]}
-            )
-        data.append(
-            {"generalSituation":fnd_data["generalSituation"],
+                    "icon":fnd_data["weatherForecast"][i]["ForecastIcon"]
+            }
+        data["message"]={
+            "generalSituation":fnd_data["generalSituation"],
             "updateTime":fnd_data["updateTime"]
             }
-        )
         
         if (verbose): self.verbose(data,"fnd",days=days)
         
@@ -82,18 +80,32 @@ class WeatherInfo:
 
         return data
     
-    def verbose(self,data,type,days=2):
+    def warnsum_process(self,verbose):
+        warnsum_url = 'https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=warnsum&lang=tc'
+        warnsum_data = json.loads(requests.get(warnsum_url).text) 
+        data={}
+        for sign in warnsum_data.keys():
+            data[warnsum_data[sign]['code']]={
+                "name":warnsum_data[sign]['name'],
+                "actionCode":warnsum_data[sign]['actionCode'],
+                "issueTime":warnsum_data[sign]['issueTime'],
+                "updateTime":warnsum_data[sign]['updateTime']
+            }
 
+        if (verbose): self.verbose(data,"warnsum")
+
+        return data
+    
+    def verbose(self,data,type,days=2):
         # translation ={}
+        print("-"*10+" "+type+" "+"-"*10)
 
         if (type in ['rhr','flw']):
             for key in data:
                 print("{:<16s}: {:<10s}".format(key, str(data[key])))
-        elif (type == "fnd"):
-            for i in range(days):
-                for key in data[i].keys():
-                    print("{:<16s}: {:<10s}".format(key, str(data[i][key])))
-                print()
-
-        print("-"*10)
+        elif (type in ("warnsum","fnd")):
+            for key in data.keys():
+                print(key+":")
+                for value in data[key]:
+                    print("\t{:<10s}: {:s}".format(value,str(data[key][value])))
         
