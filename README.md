@@ -57,7 +57,7 @@ sudo make check
 sudo make install
 ```
 ```
-sudo apt-get install wiringpi
+sudo apt-get install wiringpi # deprecated
 wget https://project-downloads.drogon.net/wiringpi-latest.deb
 sudo dpkg -i wiringpi-latest.deb
 gpio -v
@@ -80,7 +80,7 @@ python3 -m pip install pillow --upgrade
 
 #### 執行
 測試 e-paper : ```python3 epd_3in7_test.py```<br>
-主程式 : ```python3 main.py [-flags]```<br>
+主程式 : ```python3 epd3in7_display.py [-flags]```<br>
 
 如未能成功執行，請嘗試安裝 libopenjp2-7 library
 ```sudo apt-get install libopenjp2-7```
@@ -89,7 +89,7 @@ python3 -m pip install pillow --upgrade
 - crontab
 1. 修改 ```epd3in7_refresh / epd4in2b_V2_refresh``` 內嘅 ```dist="<天氣資料地區>", rain="<雨量資料地區>"```
 3. 修改程式檔案位置至 ```cd <path to program directory>```
-4. 按需要增減flag至 ```python3 main.py -d $dist -r $rain <flags>```
+4. 按需要增減flag至 ```python3 epd3in7_display <flags>```
 5. 新增crontab：在terminal執行 ```crontab -e```
 > <b>Example</b><br>
 > 每半小時更新一次 ```*/30 * * * *  <path to epd3in7_refresh directory>/epd3in7_refresh```<br>
