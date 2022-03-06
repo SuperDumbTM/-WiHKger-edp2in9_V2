@@ -113,5 +113,5 @@ python3 -m pip install pillow --upgrade
       ```-f/--forecast-text-type```
   8. 關閉於terminal顯示天氣資料，當-v/--verbose同時設定先有效<br>
       ```--mute-weather-info```
-  9. 顯示程式flags教學
+  9. 顯示程式flags教學<br>
       ```-h/--help```
