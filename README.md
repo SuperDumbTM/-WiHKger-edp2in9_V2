@@ -17,9 +17,10 @@
 ### 修改項目
 - 天氣預測由顯示未來一天新增至兩天
 - 新增顯示當天日期
+- 顯示公眾假期
 - 支援從command line修改天氣資料地區，詳見 Usage
 - 分離 HKO API return parsing 至獨立 module
-- [！] 右上空位重未諗到放咩好
+- 顯示天氣警告訊號
 
 ### 4.2" 三色 display 版本獨有功能
 - 週未（六, 日）時，星期顯示為紅色（或黃色）
@@ -110,3 +111,7 @@ python3 -m pip install pillow --upgrade
   7. 設定天氣預報文字類型 (只適用於 4.2")<br>
       generalSituation（天氣概況，預設）,forecastDesc（天氣預測內容）,outlook（天氣展望）<br>
       ```-f/--forecast-text-type```
+  8. 關閉於terminal顯示天氣資料，當-v/--verbose同時設定先有效<br>
+      ```--mute-weather-info```
+  9. 顯示程式flags教學
+      ```-h/--help
