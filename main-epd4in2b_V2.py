@@ -105,7 +105,7 @@ def draw_weather_descript(text,drawB,drawRY):
         num_words = 17
         for i in range(len(text)//num_words):
             text=text[:(i+1)*num_words]+"\n"+text[(i+1)*num_words:]
-        drawB.text((0,235),text, font=font22, fill=0)
+        drawB.text((0,240),text, font=font22, fill=0)
     elif (len(text)<=44):
         num_words = 22
         for i in range(len(text)//num_words):
@@ -120,7 +120,7 @@ def draw_weather_descript(text,drawB,drawRY):
         num_words = 36
         for i in range(len(text)//num_words):
             text=text[:(i+1)*num_words]+"\n"+text[(i+1)*num_words:]
-        drawB.text((0,240),text, font=font11, fill=0)
+        drawB.text((0,236),text, font=font11, fill=0)
 def draw_day(date,drawB,drawRY):
     if (hk_holiday.isHoliday(date)):
         drawB.text((4,1), hk_holiday.get_holiday_name(), font = font14, fill=0)
@@ -139,32 +139,34 @@ def main(argv):
     opts, args = getopt.getopt(argv[1:],'d:r:vhiR:f:',
         ["district=","rainfall-district=","verbose","image-save","help","rotate-display=","dry-run","forecast-text-type=", "mute-weather-info"])
     for opt,arg in opts:
-        if opt in ['-d', '--district']:
+        if opt in ('-d', '--district'):
             DIST = arg
-        elif opt in ['-r', '--rainfall-district']:
+        elif opt in ('-r', '--rainfall-district'):
             RAINFALL_DIST = arg
-        elif opt in ['-v', '--verbose']:
+        elif opt in ('-v', '--verbose'):
             VERBOSE_FLAG = True
-        elif opt in ['-R', '--rotate-display']:
+        elif opt in ('-R', '--rotate-display'):
             ROTATE_FLAG = True
             ROTATE_DEGREE = int(arg)
-        elif opt in ['-i', '--image-save']:
+        elif opt in ('-i', '--image-save'):
             IMAGEOUT_FLAG = True
-        elif opt in ['--dry-run']:
+        elif opt in ('--dry-run'):
             IMAGEOUT_FLAG = True
             VERBOSE_FLAG = True
             DRYRUN_FLAG = True
-        elif opt in ['-f', '--forecast-text-type']:
+        elif opt in ('-f', '--forecast-text-type'):
             if (str(arg) not in ["generalSituation","forecastDesc","outlook"]):
                 print("[ERROR] Input for flag -f/--forecast-text-type shoud be \"generalSituation\"/\"forecastDesc\"/\"outlook\".  \nAbord...")
                 exit(-1)
             FORECAST_TEXT = arg
-        elif opt in ('mute-weather-info'):
+        elif opt in ('--mute-weather-info'):
             MUTE_WXINFO_FLAG = True
         elif opt in ['-h', '--help']:
             with open(os.path.join(conf,"help.txt"),'r') as h:
                 print(h.read())
             exit()
+    if (VERBOSE_FLAG): print("[DEBUG]","DIST: ",DIST,"RAINFALL_DIST: ",RAINFALL_DIST,"ROTATE_FLAG: ",ROTATE_FLAG,"\nROTATE_DEGREE: ",
+            ROTATE_DEGREE,"IMAGEOUT_FLAG: ",IMAGEOUT_FLAG, "DRYRUN_FLAG: ",DRYRUN_FLAG,"FORECAST_TEXT: ",FORECAST_TEXT)
     
     if(DIST==""): 
         DIST="香港天文台"
@@ -175,10 +177,10 @@ def main(argv):
     
     epd = epd4in2b_V2.EPD()
     wx = weather_info.WeatherInfo(dist=DIST,rainfall_dist=RAINFALL_DIST)
-    crrt_wx=wx.rhrread_process(VERBOSE_FLAG and not MUTE_WXINFO_FLAG)
-    forecast_wx=wx.fnd_process(VERBOSE_FLAG and not MUTE_WXINFO_FLAG)
-    forecast_desc=wx.flw_process(VERBOSE_FLAG and not MUTE_WXINFO_FLAG)
-    warnings=wx.warnsum_process(VERBOSE_FLAG and not MUTE_WXINFO_FLAG)
+    crrt_wx=wx.rhrread_process(VERBOSE_FLAG and not(MUTE_WXINFO_FLAG))
+    forecast_wx=wx.fnd_process(VERBOSE_FLAG and not(MUTE_WXINFO_FLAG))
+    forecast_desc=wx.flw_process(VERBOSE_FLAG and not(MUTE_WXINFO_FLAG))
+    warnings=wx.warnsum_process(VERBOSE_FLAG and not(MUTE_WXINFO_FLAG))
 
     try:
         # init
@@ -193,7 +195,7 @@ def main(argv):
 
         if (VERBOSE_FLAG): print("[INFO] Drawing frame...")
         drawB.line((0, 66, epd.width, 66), fill=0, width=3) # date
-        drawB.line((110, 15, 110, 50), fill=0, width=3) # date, weekday vertical
+        drawB.line((110, 20, 110, 50), fill=0, width=3) # date, weekday vertical
         drawB.line((260, 0, 260, 66), fill=0, width=3) # date, main vertical
         drawB.line((260,32,epd.width,32), fill=0) # warn horizontal
         drawB.line((306,0,306,66), fill=0) # warn vertical
@@ -271,7 +273,7 @@ def main(argv):
             img_Black.save(os.path.join(tmpdir,"black.bmp"))
             img_RedYellow.save(os.path.join(tmpdir,"red.bmp"))
         if (ROTATE_FLAG):
-            if (VERBOSE_FLAG): print("[INFO] Rotating the e-paper display output by {0}",ROTATE_DEGREE)
+            if (VERBOSE_FLAG): print("[INFO] Rotating the e-paper display output by {0}".format(str(ROTATE_DEGREE)+"°"))
             img_Black = img_Black.rotate(ROTATE_DEGREE)
             img_RedYellow = img_RedYellow.rotate(ROTATE_DEGREE)
 
